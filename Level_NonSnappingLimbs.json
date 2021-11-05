@@ -1,0 +1,16 @@
+{
+  "$type": "ThunderRoad.LevelData, Assembly-CSharp",
+  "id": "Master",
+  "version": 2,
+  "modes": [
+    {
+      "name": "Default",
+      "modules": 
+	  [
+        {
+          "$type": "NonSnappingLimbs.LoadModule, NonSnappingLimbs",
+        }
+      ]
+    }
+  ]
+}

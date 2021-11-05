@@ -1,0 +1,3 @@
+Plugin/bin/**
+Plugin/obj/**
+Plugin/.vs/**
