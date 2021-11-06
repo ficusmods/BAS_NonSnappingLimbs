@@ -141,6 +141,7 @@ namespace NonSnappingLimbs
                 {
                     part.bone.animationJoint.connectedBody = original_connected_bodies[part];
                     part.bone.animation.SetParent(original_animation_parent[part]);
+                    part.bone.animationJoint.gameObject.SetActive(true);
                     part.characterJointLocked = false;
                 }
             }
@@ -182,8 +183,6 @@ namespace NonSnappingLimbs
                     rp.bone.animationJoint.gameObject.SetActive(false);
                     rp.bone.animation.localPosition = UnityEngine.Vector3.zero;
                     rp.bone.animation.localRotation = Quaternion.identity;
-                    rp.bone.hasChildAnimationJoint = false;
-
 
                     if (!node.slice_root)
                     {
