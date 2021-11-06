@@ -13,10 +13,10 @@ namespace NonSnappingLimbs
     public class LoadModule : LevelModule
     {
 
-        public override IEnumerator OnLoadCoroutine(Level level)
+        public override IEnumerator OnLoadCoroutine()
         {
             EventManager.onCreatureSpawn += EventManager_onCreatureSpawn;
-            return base.OnLoadCoroutine(level);
+            return base.OnLoadCoroutine();
         }
 
         private void EventManager_onCreatureSpawn(Creature creature)

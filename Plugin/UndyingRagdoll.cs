@@ -164,7 +164,8 @@ namespace NonSnappingLimbs
             }
         }
 
-        private void Ragdoll_OnStateChange(Ragdoll.State state)
+        Dictionary<RagdollPart, Transform> previous_bone_anim_position = new Dictionary<RagdollPart, Transform>();
+        private void Ragdoll_OnStateChange(Ragdoll.State previousState, Ragdoll.State newState, Ragdoll.PhysicStateChange physicStateChange, EventTime eventTime)
         {            
             Ragdoll ragdoll = gameObject.GetComponentInChildren<Ragdoll>();
 
@@ -176,21 +177,20 @@ namespace NonSnappingLimbs
                 {
                     if (node.slice_root)
                     {
-                        rp.bone.animation.SetParent(null);
-                        rp.bone.animation.localPosition = rp.bone.orgLocalPosition;
-                        rp.bone.animation.localRotation = rp.bone.orgLocalRotation;
+                        rp.bone.animation.SetParent(rp.transform);
+                        rp.bone.animation.localPosition = UnityEngine.Vector3.zero;
+                        rp.bone.animation.localRotation = Quaternion.identity;
                     }
                     else
                     {
                         rp.bone.animation.SetParent(rp.bone.parent.part.transform);
-                        rp.bone.mesh.SetParent(rp.bone.parent.mesh, true);
-                        rp.bone.mesh.localPosition = rp.bone.orgLocalPosition;
-                        rp.bone.mesh.localRotation = rp.bone.orgLocalRotation;
+                        rp.bone.mesh.SetParent(rp.transform, true);
+                        rp.bone.mesh.localPosition = UnityEngine.Vector3.zero;
+                        rp.bone.mesh.localRotation = Quaternion.identity;
                         rp.bone.mesh.localScale = UnityEngine.Vector3.one;
                     }
 
                     rp.bone.animation.localScale = UnityEngine.Vector3.one;
-                    rp.bone.mesh.localScale = UnityEngine.Vector3.one;
 
                 }
             }
@@ -264,6 +264,7 @@ namespace NonSnappingLimbs
                         rp.bone.animationJoint.connectedBody = null;
 
                         rp.transform.localScale = UnityEngine.Vector3.one;
+
                         if (rp.bone.fixedJoint)
                             Destroy(rp.bone.fixedJoint);
 

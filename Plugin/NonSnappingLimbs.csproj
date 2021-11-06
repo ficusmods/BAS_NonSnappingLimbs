@@ -13,6 +13,12 @@
     <Reference Include="RainyReignGames.Dismemberment">
       <HintPath>D:\SteamGames\steamapps\common\Blade &amp; Sorcery\BladeAndSorcery_Data\Managed\RainyReignGames.Dismemberment.dll</HintPath>
     </Reference>
+    <Reference Include="ThunderRoad">
+      <HintPath>D:\SteamGames\steamapps\common\Blade &amp; Sorcery\BladeAndSorcery_Data\Managed\ThunderRoad.dll</HintPath>
+    </Reference>
+    <Reference Include="ThunderRoad.Plugins">
+      <HintPath>D:\SteamGames\steamapps\common\Blade &amp; Sorcery\BladeAndSorcery_Data\Managed\ThunderRoad.Plugins.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>D:\SteamGames\steamapps\common\Blade &amp; Sorcery\BladeAndSorcery_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
