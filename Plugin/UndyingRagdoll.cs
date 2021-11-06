@@ -115,8 +115,6 @@ namespace NonSnappingLimbs
 
             part_tree.arrange_tree();
 
-            ragdoll.AddPhysicToggleModifier(this);
-
             ragdoll.OnSliceEvent += Ragdoll_OnSliceEvent;
             ragdoll.OnStateChange += Ragdoll_OnStateChange;
             ragdoll.creature.OnDespawnEvent += Creature_OnDespawnEvent;
@@ -190,6 +188,7 @@ namespace NonSnappingLimbs
 
         private void Ragdoll_OnSliceEvent(RagdollPart ragdollPart, EventTime eventTime)
         {
+            ragdollPart.ragdoll.AddPhysicToggleModifier(this);
             if (eventTime == EventTime.OnEnd)
             {
                 PartNode node = part_tree.getNode(ragdollPart);
