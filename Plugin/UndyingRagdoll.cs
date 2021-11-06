@@ -175,16 +175,16 @@ namespace NonSnappingLimbs
                 if (node == null) continue;
                 if (node.sliced_off)
                 {
-                    if (node.slice_root)
+                    rp.bone.animation.SetParent(rp.transform);
+                    rp.bone.animationJoint.gameObject.SetActive(false);
+                    rp.bone.animation.localPosition = UnityEngine.Vector3.zero;
+                    rp.bone.animation.localRotation = Quaternion.identity;
+                    rp.bone.hasChildAnimationJoint = false;
+
+
+                    if (!node.slice_root)
                     {
-                        rp.bone.animation.SetParent(rp.transform);
-                        rp.bone.animation.localPosition = UnityEngine.Vector3.zero;
-                        rp.bone.animation.localRotation = Quaternion.identity;
-                    }
-                    else
-                    {
-                        rp.bone.animation.SetParent(rp.bone.parent.part.transform);
-                        rp.bone.mesh.SetParent(rp.transform, true);
+                        rp.bone.mesh.SetParent(rp.transform);
                         rp.bone.mesh.localPosition = UnityEngine.Vector3.zero;
                         rp.bone.mesh.localRotation = Quaternion.identity;
                         rp.bone.mesh.localScale = UnityEngine.Vector3.one;
@@ -284,6 +284,5 @@ namespace NonSnappingLimbs
                 }
             }
         }
-
     }
 }
