@@ -3,5 +3,5 @@
 	"Description": "Disables reattachment of limbs that were cut off",
 	"Author": "fks",
 	"ModVersion": "1.0",
-    "GameVersion": "9.3"
+    "GameVersion": "10.0"
 }

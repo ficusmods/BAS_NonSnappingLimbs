@@ -1,7 +1,7 @@
 {
   "$type": "ThunderRoad.LevelData, Assembly-CSharp",
   "id": "Master",
-  "version": 2,
+  "version": 3,
   "modes": [
     {
       "name": "Default",
