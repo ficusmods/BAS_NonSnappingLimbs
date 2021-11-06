@@ -119,7 +119,6 @@ namespace NonSnappingLimbs
 
             ragdoll.OnSliceEvent += Ragdoll_OnSliceEvent;
             ragdoll.OnStateChange += Ragdoll_OnStateChange;
-            //ragdoll.creature.OnKillEvent += Creature_OnKillEvent;
             ragdoll.creature.OnDespawnEvent += Creature_OnDespawnEvent;
         }
 
@@ -160,15 +159,6 @@ namespace NonSnappingLimbs
             revert_changes();
         }
 
-        private void Creature_OnKillEvent(CollisionInstance collisionInstance, EventTime eventTime)
-        {
-            if (eventTime == EventTime.OnEnd)
-            {
-                revert_changes();
-            }
-        }
-
-        Dictionary<RagdollPart, Transform> previous_bone_anim_position = new Dictionary<RagdollPart, Transform>();
         private void Ragdoll_OnStateChange(Ragdoll.State previousState, Ragdoll.State newState, Ragdoll.PhysicStateChange physicStateChange, EventTime eventTime)
         {            
             Ragdoll ragdoll = gameObject.GetComponentInChildren<Ragdoll>();
