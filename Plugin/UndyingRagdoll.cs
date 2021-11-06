@@ -115,6 +115,8 @@ namespace NonSnappingLimbs
 
             part_tree.arrange_tree();
 
+            ragdoll.AddPhysicToggleModifier(this);
+
             ragdoll.OnSliceEvent += Ragdoll_OnSliceEvent;
             ragdoll.OnStateChange += Ragdoll_OnStateChange;
             //ragdoll.creature.OnKillEvent += Creature_OnKillEvent;
@@ -128,6 +130,7 @@ namespace NonSnappingLimbs
 
             ragdoll.creature.groundStabilizationMaxVelocity = original_max_stabilization_velocity;
             ragdoll.creature.stepEnabled = true;
+            ragdoll.RemovePhysicToggleModifier(this);
 
             foreach (RagdollPart part in ragdoll.parts)
             {
@@ -191,9 +194,9 @@ namespace NonSnappingLimbs
                     }
 
                     rp.bone.animation.localScale = UnityEngine.Vector3.one;
-
                 }
             }
+
         }
 
         private void Ragdoll_OnSliceEvent(RagdollPart ragdollPart, EventTime eventTime)
