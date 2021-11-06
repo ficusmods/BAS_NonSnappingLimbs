@@ -238,6 +238,16 @@ namespace NonSnappingLimbs
             if (headGone) ragdoll.creature.stepEnabled = false;
         }
 
+        private void check_handle_release()
+        {
+            Ragdoll ragdoll = gameObject.GetComponentInChildren<Ragdoll>();
+
+            var leftArm = ragdoll.GetPart(RagdollPart.Type.LeftArm);
+            var rightArm = ragdoll.GetPart(RagdollPart.Type.RightArm);
+            if (part_tree.getNode(leftArm).sliced_off) ragdoll.creature.handLeft.TryRelease();
+            if (part_tree.getNode(rightArm).sliced_off) ragdoll.creature.handRight.TryRelease();
+        }
+
         private void Update()
         {
             Ragdoll ragdoll = gameObject.GetComponentInChildren<Ragdoll>();
@@ -245,6 +255,7 @@ namespace NonSnappingLimbs
             if (ragdoll.creature.isKilled) return;
 
             check_destabilize(ragdoll);
+            check_handle_release();
 
             foreach (RagdollPart rp in ragdoll.parts)
             {
