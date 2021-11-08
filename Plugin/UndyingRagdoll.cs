@@ -233,10 +233,10 @@ namespace NonSnappingLimbs
         {
             Ragdoll ragdoll = gameObject.GetComponentInChildren<Ragdoll>();
 
-            var leftArm = ragdoll.GetPart(RagdollPart.Type.LeftArm);
-            var rightArm = ragdoll.GetPart(RagdollPart.Type.RightArm);
-            if (part_tree.getNode(leftArm).sliced_off) ragdoll.creature.handLeft.TryRelease();
-            if (part_tree.getNode(rightArm).sliced_off) ragdoll.creature.handRight.TryRelease();
+            var leftHand = ragdoll.GetPart(RagdollPart.Type.LeftHand);
+            var rightHand = ragdoll.GetPart(RagdollPart.Type.RightHand);
+            if (part_tree.getNode(leftHand).sliced_off) ragdoll.creature.handLeft.TryRelease();
+            if (part_tree.getNode(rightHand).sliced_off) ragdoll.creature.handRight.TryRelease();
         }
 
         private void Update()
