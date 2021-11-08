@@ -13,9 +13,12 @@ namespace NonSnappingLimbs
     public class LoadModule : LevelModule
     {
 
+        public string mod_version = "0.0";
+        public string mod_name = "UnnamedMod";
         public override IEnumerator OnLoadCoroutine()
         {
-            Logger.modname = "NonSnappingLimbs";
+            Logger.mod_version = mod_version;
+            Logger.modname = mod_name;
             Logger.Msg("Loading " + Logger.modname);
             EventManager.onCreatureSpawn += EventManager_onCreatureSpawn;
             return base.OnLoadCoroutine();

@@ -10,11 +10,12 @@ namespace NonSnappingLimbs
 {
     class Logger
     {
-        public static string modname = "fksmod";
+        public static string modname = "UnnamedMod";
+        public static string mod_version = "0.0";
         public static void Msg(object msg)
         {
 
-            Debug.Log(String.Format("{0} | {1}", modname, msg));
+            Debug.Log(String.Format("{0} v{1} | {2}", modname, mod_version, msg));
         }
     }
 }
