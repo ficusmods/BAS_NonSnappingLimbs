@@ -9,6 +9,9 @@
 	  [
         {
           "$type": "NonSnappingLimbs.LoadModule, NonSnappingLimbs",
+          "mod_name": "NonSnappingLimbs",
+          "mod_version": "1.2",
+          "logger_level": "Basic"
         }
       ]
     }
