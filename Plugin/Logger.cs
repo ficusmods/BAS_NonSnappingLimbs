@@ -8,14 +8,35 @@ using UnityEngine;
 
 namespace NonSnappingLimbs
 {
-    class Logger
+    public class Logger
     {
-        public static string modname = "UnnamedMod";
-        public static string mod_version = "0.0";
-        public static void Msg(object msg)
+        public enum Level
         {
+            None = 0,
+            Basic = 1,
+            Detailed = 2
+        }
 
-            Debug.Log(String.Format("{0} v{1} | {2}", modname, mod_version, msg));
+        private static string modname = "UnnamedMod";
+        private static string mod_version = "0.0";
+        private static Level level = Level.Basic;
+
+        public static void init(string name, string version, string level)
+        {
+            Logger.modname = name;
+            Logger.mod_version = version;
+            Logger.level = (Logger.Level)Enum.Parse(typeof(Logger.Level), level);
+        }
+
+        public static void Basic(object msg)
+        {
+            if(level >= Level.Basic)
+                Debug.Log(String.Format("{0} v{1} (Basic) | {2}", modname, mod_version, msg));
+        }
+        public static void Detailed(object msg)
+        {
+            if (level >= Level.Detailed)
+                Debug.Log(String.Format("{0} v{1} (Detailed) | {2}", modname, mod_version, msg));
         }
     }
 }

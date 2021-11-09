@@ -15,11 +15,14 @@ namespace NonSnappingLimbs
 
         public string mod_version = "0.0";
         public string mod_name = "UnnamedMod";
+        public static string logger_level = "Basic";
+
+        
         public override IEnumerator OnLoadCoroutine()
         {
-            Logger.mod_version = mod_version;
-            Logger.modname = mod_name;
-            Logger.Msg("Loading " + Logger.modname);
+            Logger.init(mod_name, mod_version, logger_level);
+
+            Logger.Basic("Loading " + mod_name);
             EventManager.onCreatureSpawn += EventManager_onCreatureSpawn;
             return base.OnLoadCoroutine();
         }
@@ -30,7 +33,7 @@ namespace NonSnappingLimbs
             {
                 if (!creature.gameObject.TryGetComponent<UndyingRagdoll>(out UndyingRagdoll ur))
                 {
-                    Logger.Msg(String.Format("Adding component to {0} ({1}, {2})", creature.name, creature.creatureId, creature.GetInstanceID()));
+                    Logger.Detailed(String.Format("Adding component to {0} ({1}, {2})", creature.name, creature.creatureId, creature.GetInstanceID()));
                     creature.gameObject.AddComponent<UndyingRagdoll>();
                 }
             }

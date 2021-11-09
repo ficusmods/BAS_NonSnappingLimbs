@@ -102,7 +102,7 @@ namespace NonSnappingLimbs
         private void Awake()
         {
             Ragdoll ragdoll = gameObject.GetComponentInChildren<Ragdoll>();
-            Logger.Msg(String.Format("Applying changes to {0} ({1}, {2})", ragdoll.creature.name, ragdoll.creature.creatureId, ragdoll.creature.GetInstanceID()));
+            Logger.Detailed(String.Format("Applying changes to {0} ({1}, {2})", ragdoll.creature.name, ragdoll.creature.creatureId, ragdoll.creature.GetInstanceID()));
 
             part_tree = new PartTree(ragdoll.rootPart);
             foreach (RagdollPart rp in ragdoll.parts)
@@ -126,7 +126,7 @@ namespace NonSnappingLimbs
         private void revert_changes()
         {
             Ragdoll ragdoll = gameObject.GetComponentInChildren<Ragdoll>();
-            Logger.Msg(String.Format("Reverting changes for {0} ({1}, {2})", ragdoll.creature.name, ragdoll.creature.creatureId, ragdoll.creature.GetInstanceID()));
+            Logger.Detailed(String.Format("Reverting changes for {0} ({1}, {2})", ragdoll.creature.name, ragdoll.creature.creatureId, ragdoll.creature.GetInstanceID()));
 
             ragdoll.creature.groundStabilizationMaxVelocity = original_max_stabilization_velocity;
             ragdoll.creature.stepEnabled = true;
@@ -152,7 +152,7 @@ namespace NonSnappingLimbs
             if (eventTime == EventTime.OnStart)
             {
                 Creature creature = gameObject.GetComponentInChildren<Creature>();
-                Logger.Msg(String.Format("Creature despawned for {0} ({1}, {2})", creature.name, creature.creatureId, creature.GetInstanceID()));
+                Logger.Detailed(String.Format("Creature despawned for {0} ({1}, {2})", creature.name, creature.creatureId, creature.GetInstanceID()));
                 revert_changes();
             }
         }
@@ -160,7 +160,7 @@ namespace NonSnappingLimbs
         private void onDestroy()
         {
             Creature creature = gameObject.GetComponentInChildren<Creature>();
-            Logger.Msg(String.Format("Component destroyed for {0} ({1}, {2})", creature.name, creature.creatureId, creature.GetInstanceID()));
+            Logger.Basic(String.Format("Component destroyed for {0} ({1}, {2})", creature.name, creature.creatureId, creature.GetInstanceID()));
             revert_changes();
         }
 
