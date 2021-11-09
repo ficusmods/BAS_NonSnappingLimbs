@@ -26,10 +26,13 @@ namespace NonSnappingLimbs
 
         private void EventManager_onCreatureSpawn(Creature creature)
         {
-            if (!creature.gameObject.TryGetComponent<UndyingRagdoll>(out UndyingRagdoll ur))
+            if (!creature.isPlayer)
             {
-                Logger.Msg(String.Format("Adding component to {0} ({1}, {2})", creature.name, creature.creatureId, creature.GetInstanceID()));
-                creature.gameObject.AddComponent<UndyingRagdoll>();
+                if (!creature.gameObject.TryGetComponent<UndyingRagdoll>(out UndyingRagdoll ur))
+                {
+                    Logger.Msg(String.Format("Adding component to {0} ({1}, {2})", creature.name, creature.creatureId, creature.GetInstanceID()));
+                    creature.gameObject.AddComponent<UndyingRagdoll>();
+                }
             }
         }
     }
