@@ -15,7 +15,7 @@ namespace NonSnappingLimbs
 
         public string mod_version = "0.0";
         public string mod_name = "UnnamedMod";
-        public static string logger_level = "Basic";
+        public string logger_level = "Basic";
 
         
         public override IEnumerator OnLoadCoroutine()

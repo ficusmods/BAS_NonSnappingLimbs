@@ -21,11 +21,13 @@ namespace NonSnappingLimbs
         private static string mod_version = "0.0";
         private static Level level = Level.Basic;
 
-        public static void init(string name, string version, string level)
+        public static void init(string _name, string _version, string _level)
         {
-            Logger.modname = name;
-            Logger.mod_version = version;
-            Logger.level = (Logger.Level)Enum.Parse(typeof(Logger.Level), level);
+            Logger.modname = _name;
+            Logger.mod_version = _version;
+            if(!Enum.TryParse(_level, out Logger.level)){
+                Logger.level = Level.Basic;
+            }
         }
 
         public static void Basic(object msg)
