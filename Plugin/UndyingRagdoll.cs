@@ -5,7 +5,6 @@ using System.Linq;
 
 using UnityEngine;
 using ThunderRoad;
-using RainyReignGames.MeshDismemberment;
 
 
 namespace NonSnappingLimbs
