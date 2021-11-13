@@ -25,20 +25,21 @@ namespace NonSnappingLimbs
         {
             Logger.modname = _name;
             Logger.mod_version = _version;
-            if(!Enum.TryParse(_level, out Logger.level)){
+            if (!Enum.TryParse(_level, out Logger.level))
+            {
                 Logger.level = Level.Basic;
             }
         }
 
-        public static void Basic(object msg)
+        public static void Basic(object msg, params object[] values)
         {
-            if(level >= Level.Basic)
-                Debug.Log(String.Format("{0} v{1} (Basic) | {2}", modname, mod_version, msg));
+            if (level >= Level.Basic)
+                Debug.Log(String.Format($"{modname} v{mod_version} (Basic) | " + msg, values));
         }
-        public static void Detailed(object msg)
+        public static void Detailed(object msg, params object[] values)
         {
             if (level >= Level.Detailed)
-                Debug.Log(String.Format("{0} v{1} (Detailed) | {2}", modname, mod_version, msg));
+                Debug.Log(String.Format($"{modname} v{mod_version} (Detailed) | " + msg, values));
         }
     }
 }
