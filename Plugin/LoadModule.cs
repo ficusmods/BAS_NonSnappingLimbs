@@ -17,7 +17,9 @@ namespace NonSnappingLimbs
         public string mod_name = "UnnamedMod";
         public string logger_level = "Basic";
 
-        
+        public bool dieOnHeadChop = true;
+
+
         public override IEnumerator OnLoadCoroutine()
         {
             Logger.init(mod_name, mod_version, logger_level);
@@ -34,7 +36,8 @@ namespace NonSnappingLimbs
                 if (!creature.gameObject.TryGetComponent<UndyingRagdoll>(out UndyingRagdoll ur))
                 {
                     Logger.Detailed(String.Format("Adding component to {0} ({1}, {2})", creature.name, creature.creatureId, creature.GetInstanceID()));
-                    creature.gameObject.AddComponent<UndyingRagdoll>();
+                    var obj = creature.gameObject.AddComponent<UndyingRagdoll>();
+                    obj.dieOnHeadChop = dieOnHeadChop;
                 }
             }
         }

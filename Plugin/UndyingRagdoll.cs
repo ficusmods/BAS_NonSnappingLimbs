@@ -11,6 +11,7 @@ namespace NonSnappingLimbs
 {
     public class UndyingRagdoll : MonoBehaviour
     {
+        public bool dieOnHeadChop = true;
         public class PartNode
         {
             public RagdollPart part;
@@ -228,6 +229,7 @@ namespace NonSnappingLimbs
 
             if((leftLegGone && rightLegGone) || headGone)
             {
+                Logger.Detailed("Destabilizing creature: {0} ({1}, {2})", ragdoll.creature.name, ragdoll.creature.creatureId, ragdoll.creature.GetInstanceID());
                 ragdoll.SetState(Ragdoll.State.Destabilized);
                 ragdoll.creature.groundStabilizationMaxVelocity = 0.0f;
             }
@@ -245,6 +247,23 @@ namespace NonSnappingLimbs
             if (rightHand && part_tree.getNode(rightHand).sliced_off) ragdoll.creature.handRight.TryRelease();
         }
 
+        private void check_head_kill()
+        {
+            if (dieOnHeadChop)
+            {
+                Ragdoll ragdoll = gameObject.GetComponentInChildren<Ragdoll>();
+                if (ragdoll.headPart && part_tree.getNode(ragdoll.headPart).sliced_off)
+                {
+                    if (ragdoll.creature.maxHealth != float.MaxValue)
+                    {
+                        Logger.Detailed("Killing creature (head chop): {0} ({1}, {2})", ragdoll.creature.name, ragdoll.creature.creatureId, ragdoll.creature.GetInstanceID());
+                        CollisionInstance collision = new CollisionInstance(new DamageStruct(DamageType.Energy, float.MaxValue));
+                        ragdoll.creature.Damage(collision);
+                    }
+                }
+            }
+        }
+
         private void Update()
         {
             Ragdoll ragdoll = gameObject.GetComponentInChildren<Ragdoll>();
@@ -253,6 +272,7 @@ namespace NonSnappingLimbs
 
             check_destabilize(ragdoll);
             check_handle_release();
+            check_head_kill();
 
             foreach (RagdollPart rp in ragdoll.parts)
             {
