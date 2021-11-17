@@ -184,10 +184,8 @@ namespace NonSnappingLimbs
                         rp.bone.mesh.SetParent(rp.transform);
                         rp.bone.mesh.localPosition = UnityEngine.Vector3.zero;
                         rp.bone.mesh.localRotation = Quaternion.identity;
-                        rp.bone.mesh.localScale = UnityEngine.Vector3.one;
                     }
 
-                    rp.bone.animation.localScale = UnityEngine.Vector3.one;
                 }
             }
 
@@ -295,8 +293,6 @@ namespace NonSnappingLimbs
 
                         rp.transform.SetParent(null);
                         rp.bone.animationJoint.connectedBody = null;
-
-                        rp.transform.localScale = UnityEngine.Vector3.one;
 
                         if (rp.bone.fixedJoint)
                             Destroy(rp.bone.fixedJoint);
