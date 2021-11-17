@@ -120,8 +120,8 @@ namespace NonSnappingLimbs
             ragdoll.OnSliceEvent += Ragdoll_OnSliceEvent;
             ragdoll.OnStateChange += Ragdoll_OnStateChange;
             ragdoll.creature.OnDespawnEvent += Creature_OnDespawnEvent;
+            ragdoll.creature.OnKillEvent += Creature_OnKillEvent;
         }
-
 
         private void revert_changes()
         {
@@ -161,6 +161,13 @@ namespace NonSnappingLimbs
         {
             Creature creature = gameObject.GetComponentInChildren<Creature>();
             Logger.Basic(String.Format("Component destroyed for {0} ({1}, {2})", creature.name, creature.creatureId, creature.GetInstanceID()));
+            revert_changes();
+        }
+
+        private void Creature_OnKillEvent(CollisionInstance collisionInstance, EventTime eventTime)
+        {
+            Creature creature = gameObject.GetComponentInChildren<Creature>();
+            Logger.Detailed(String.Format("Creature killed for {0} ({1}, {2})", creature.name, creature.creatureId, creature.GetInstanceID()));
             revert_changes();
         }
 
