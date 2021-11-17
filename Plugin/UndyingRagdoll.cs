@@ -209,6 +209,11 @@ namespace NonSnappingLimbs
                 {
                     child.sliced_off = true;
                 }
+
+                foreach (var handle in ragdollPart.handles)
+                {
+                    handle.handleRagdollData.liftBehaviour = HandleRagdollData.LiftBehaviour.None;
+                }
             }
         }
 
