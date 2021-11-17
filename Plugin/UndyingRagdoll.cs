@@ -105,6 +105,8 @@ namespace NonSnappingLimbs
             Logger.Detailed(String.Format("Applying changes to {0} ({1}, {2})", ragdoll.creature.name, ragdoll.creature.creatureId, ragdoll.creature.GetInstanceID()));
 
             part_tree = new PartTree(ragdoll.rootPart);
+            original_connected_bodies = new Dictionary<RagdollPart, Rigidbody>();
+            original_animation_parent = new Dictionary<RagdollPart, Transform>();
             foreach (RagdollPart rp in ragdoll.parts)
             {
                 part_tree.register(rp);
