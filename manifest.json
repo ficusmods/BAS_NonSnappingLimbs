@@ -1,7 +1,7 @@
 ﻿{
-    "Name": "NonSnappingLimbs",
+  "Name": "NonSnappingLimbs",
 	"Description": "Disables reattachment of limbs that were cut off",
 	"Author": "fks",
-	"ModVersion": "1.2",
-    "GameVersion": "10.0"
+	"ModVersion": "1.3",
+  "GameVersion": "10.0"
 }
