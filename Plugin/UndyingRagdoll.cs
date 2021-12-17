@@ -11,7 +11,6 @@ namespace NonSnappingLimbs
 {
     public class UndyingRagdoll : MonoBehaviour
     {
-        public bool dieOnHeadChop = true;
         public class PartNode
         {
             public RagdollPart part;
@@ -261,7 +260,7 @@ namespace NonSnappingLimbs
 
         private void check_head_kill()
         {
-            if (dieOnHeadChop)
+            if (Config.dieOnHeadChop)
             {
                 Ragdoll ragdoll = gameObject.GetComponentInChildren<Ragdoll>();
                 if (ragdoll.headPart && part_tree.getNode(ragdoll.headPart).sliced_off)
