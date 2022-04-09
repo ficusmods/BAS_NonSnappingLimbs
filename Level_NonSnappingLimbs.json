@@ -13,7 +13,7 @@
           "mod_version": "1.4",
           "logger_level": "Basic",
           
-          "dieOnHeadChop": false
+          "dieOnHeadChop": true
         }
       ]
     }
