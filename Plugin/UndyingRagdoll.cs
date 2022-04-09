@@ -238,7 +238,7 @@ namespace NonSnappingLimbs
                 if (rp.type == RagdollPart.Type.Head && part_tree.getNode(rp).sliced_off) headGone = true;
             }
 
-            if((leftLegGone && rightLegGone) || headGone)
+            if((leftLegGone && rightLegGone) || headGone || (leftLegGone && Config.destabilizeOneLeg) || (rightLegGone && Config.destabilizeOneLeg))
             {
                 Logger.Detailed("Destabilizing creature: {0} ({1}, {2})", ragdoll.creature.name, ragdoll.creature.creatureId, ragdoll.creature.GetInstanceID());
                 ragdoll.SetState(Ragdoll.State.Destabilized);

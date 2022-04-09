@@ -9,5 +9,6 @@ namespace NonSnappingLimbs
     public class Config
     {
         public static bool dieOnHeadChop = false;
+        public static bool destabilizeOneLeg = true;
     }
 }

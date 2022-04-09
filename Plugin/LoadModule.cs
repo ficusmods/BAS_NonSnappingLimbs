@@ -19,14 +19,14 @@ namespace NonSnappingLimbs
 
         public bool dieOnHeadChop
         {
-            get
-            {
-                return Config.dieOnHeadChop;
-            }
-            set
-            {
-                Config.dieOnHeadChop = value;
-            }
+            get => Config.dieOnHeadChop;
+            set => Config.dieOnHeadChop = value;
+        }
+
+        public bool destabilizeOneLeg
+        {
+            get => Config.destabilizeOneLeg;
+            set => Config.destabilizeOneLeg = value;
         }
 
 
