@@ -5,8 +5,7 @@
   "modes": [
     {
       "name": "Default",
-      "modules": 
-	  [
+      "modules": [
         {
           "$type": "NonSnappingLimbs.LoadModule, NonSnappingLimbs",
           "mod_name": "NonSnappingLimbs",
