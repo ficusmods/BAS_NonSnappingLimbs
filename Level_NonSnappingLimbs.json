@@ -9,7 +9,7 @@
         {
           "$type": "NonSnappingLimbs.LoadModule, NonSnappingLimbs",
           "mod_name": "NonSnappingLimbs",
-          "mod_version": "1.6",
+          "mod_version": "1.7",
           "logger_level": "Basic",
           
           "dieOnHeadChop": true,
