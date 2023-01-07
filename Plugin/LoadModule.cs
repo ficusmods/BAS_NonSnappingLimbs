@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using ThunderRoad;
+using ThunderRoad.AI;
 using UnityEngine;
 
 namespace NonSnappingLimbs
@@ -35,8 +36,29 @@ namespace NonSnappingLimbs
             Logger.init(mod_name, mod_version, logger_level);
 
             Logger.Basic("Loading " + mod_name);
+            ChangeUnarmedTree();
             EventManager.onCreatureSpawn += EventManager_onCreatureSpawn;
             return base.OnLoadCoroutine();
+        }
+
+        private void ChangeUnarmedTree()
+        {
+            BehaviorTreeData unarmedTree = Catalog.GetData<BehaviorTreeData>("HumanUnarmed");
+            if (unarmedTree == null) return;
+            try
+            {
+                ThunderRoad.AI.Control.Sequence sequence =
+                    (ThunderRoad.AI.Control.Sequence)(((ThunderRoad.AI.Control.Selector)((ThunderRoad.AI.Decorator.IfCondition)unarmedTree.rootNode).child).childs[0]);
+                ThunderRoad.AI.Get.GetItem getItem = sequence.childs[3] as ThunderRoad.AI.Get.GetItem;
+                ThunderRoad.AI.Decorator.IfCondition isCutOff = new ThunderRoad.AI.Decorator.IfCondition(sequence);
+                isCutOff.ifNotConditions.Add(new AI_IsLimbCutOff());
+                isCutOff.child = getItem;
+                sequence.childs[3] = isCutOff;
+            }
+            catch(Exception e)
+            {
+                Logger.Basic("Failed to change the HumanUnarmed tree. Probably a conflict with some other mod or the game has been updated.");
+            }
         }
 
         private void EventManager_onCreatureSpawn(Creature creature)

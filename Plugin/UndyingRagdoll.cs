@@ -184,14 +184,10 @@ namespace NonSnappingLimbs
                 {
                     rp.bone.animation.SetParent(rp.transform);
                     rp.bone.animationJoint.gameObject.SetActive(false);
-                    rp.bone.animation.localPosition = UnityEngine.Vector3.zero;
-                    rp.bone.animation.localRotation = Quaternion.identity;
 
                     if (!node.slice_root)
                     {
                         rp.bone.mesh.SetParent(rp.transform);
-                        rp.bone.mesh.localPosition = UnityEngine.Vector3.zero;
-                        rp.bone.mesh.localRotation = Quaternion.identity;
                     }
 
                 }
@@ -305,7 +301,7 @@ namespace NonSnappingLimbs
                         if (rp.bone.fixedJoint)
                             Destroy(rp.bone.fixedJoint);
 
-                        rp.collisionHandler.RemovePhysicModifier((object)ragdoll);
+                        rp.collisionHandler.RemovePhysicModifier(ragdoll);
                     }
                 }
             }
