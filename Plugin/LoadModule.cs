@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace NonSnappingLimbs
 {
-    public class LoadModule : LevelModule
+    public class LoadModule : ThunderScript
     {
 
         public string mod_version = "0.0";
@@ -31,14 +31,14 @@ namespace NonSnappingLimbs
         }
 
 
-        public override IEnumerator OnLoadCoroutine()
+        public override void ScriptEnable()
         {
+            base.ScriptEnable();
             Logger.init(mod_name, mod_version, logger_level);
 
             Logger.Basic("Loading " + mod_name);
             ChangeUnarmedTree();
             EventManager.onCreatureSpawn += EventManager_onCreatureSpawn;
-            return base.OnLoadCoroutine();
         }
 
         private void ChangeUnarmedTree()
