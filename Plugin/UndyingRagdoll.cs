@@ -288,7 +288,7 @@ namespace NonSnappingLimbs
                 {
                     if (node.sliced_off)
                     {
-                        rp.GetComponent<Rigidbody>().isKinematic = false;
+                        rp.physicBody.isKinematic = false;
                         if (node.slice_root)
                         {
                             rp.DestroyCharJoint();
