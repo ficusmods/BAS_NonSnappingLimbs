@@ -14,22 +14,9 @@ namespace NonSnappingLimbs
     public class LoadModule : ThunderScript
     {
 
-        public string mod_version = "0.0";
-        public string mod_name = "UnnamedMod";
+        public string mod_version = "1.9.2";
+        public string mod_name = "NonSnappingLimbs";
         public string logger_level = "Basic";
-
-        public bool dieOnHeadChop
-        {
-            get => Config.dieOnHeadChop;
-            set => Config.dieOnHeadChop = value;
-        }
-
-        public bool destabilizeOneLeg
-        {
-            get => Config.destabilizeOneLeg;
-            set => Config.destabilizeOneLeg = value;
-        }
-
 
         public override void ScriptEnable()
         {
