@@ -28,6 +28,12 @@ namespace NonSnappingLimbs
             EventManager.onCreatureSpawn += EventManager_onCreatureSpawn;
         }
 
+        public override void ScriptDisable()
+        {
+            base.ScriptDisable();
+            EventManager.onCreatureSpawn-= EventManager_onCreatureSpawn;
+        }
+
         private void ChangeUnarmedTree()
         {
             BehaviorTreeData unarmedTree = Catalog.GetData<BehaviorTreeData>("HumanUnarmed");
