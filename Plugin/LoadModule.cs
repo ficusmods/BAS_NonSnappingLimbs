@@ -11,34 +11,27 @@ using UnityEngine;
 
 namespace NonSnappingLimbs
 {
-    public class LoadModule : LevelModule
+    public class LoadModule : ThunderScript
     {
 
-        public string mod_version = "0.0";
-        public string mod_name = "UnnamedMod";
+        public string mod_version = "1.9.2";
+        public string mod_name = "NonSnappingLimbs";
         public string logger_level = "Basic";
 
-        public bool dieOnHeadChop
+        public override void ScriptEnable()
         {
-            get => Config.dieOnHeadChop;
-            set => Config.dieOnHeadChop = value;
-        }
-
-        public bool destabilizeOneLeg
-        {
-            get => Config.destabilizeOneLeg;
-            set => Config.destabilizeOneLeg = value;
-        }
-
-
-        public override IEnumerator OnLoadCoroutine()
-        {
+            base.ScriptEnable();
             Logger.init(mod_name, mod_version, logger_level);
 
             Logger.Basic("Loading " + mod_name);
             ChangeUnarmedTree();
             EventManager.onCreatureSpawn += EventManager_onCreatureSpawn;
-            return base.OnLoadCoroutine();
+        }
+
+        public override void ScriptDisable()
+        {
+            base.ScriptDisable();
+            EventManager.onCreatureSpawn-= EventManager_onCreatureSpawn;
         }
 
         private void ChangeUnarmedTree()
