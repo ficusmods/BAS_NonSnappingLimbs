@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ThunderRoad;
 using ThunderRoad.AI;
 using UnityEngine;
+using HarmonyLib;
 
 namespace NonSnappingLimbs
 {
@@ -25,6 +26,8 @@ namespace NonSnappingLimbs
 
             Logger.Basic("Loading " + mod_name);
             ChangeUnarmedTree();
+            Harmony harmony = new Harmony("cafe.ficus.nslpatch");
+            harmony.PatchAll();
             EventManager.onCreatureSpawn += EventManager_onCreatureSpawn;
         }
 
