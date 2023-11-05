@@ -15,7 +15,7 @@ namespace NonSnappingLimbs
     public class LoadModule : ThunderScript
     {
 
-        public string mod_version = "1.9.2";
+        public string mod_version = "1.10";
         public string mod_name = "NonSnappingLimbs";
         public string logger_level = "Basic";
 

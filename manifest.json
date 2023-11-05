@@ -2,6 +2,6 @@
   "Name": "NonSnappingLimbs",
   "Description": "Disables reattachment of limbs that were cut off",
 	"Author": "ficus",
-	"ModVersion": "1.8",
+	"ModVersion": "1.10",
   "GameVersion": "0.12.0.0"
 }
