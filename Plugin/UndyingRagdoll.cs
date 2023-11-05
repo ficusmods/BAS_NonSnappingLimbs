@@ -119,7 +119,6 @@ namespace NonSnappingLimbs
             part_tree.arrange_tree();
 
             ragdoll.OnSliceEvent += Ragdoll_OnSliceEvent;
-            ragdoll.OnStateChange += Ragdoll_OnStateChange;
             ragdoll.creature.OnDespawnEvent += Creature_OnDespawnEvent;
             ragdoll.creature.OnKillEvent += Creature_OnKillEvent;
         }
@@ -170,29 +169,6 @@ namespace NonSnappingLimbs
             Creature creature = gameObject.GetComponentInChildren<Creature>();
             Logger.Detailed(String.Format("Creature killed for {0} ({1}, {2})", creature.name, creature.creatureId, creature.GetInstanceID()));
             revert_changes();
-        }
-
-        private void Ragdoll_OnStateChange(Ragdoll.State previousState, Ragdoll.State newState, Ragdoll.PhysicStateChange physicStateChange, EventTime eventTime)
-        {
-            Ragdoll ragdoll = gameObject.GetComponentInChildren<Ragdoll>();
-
-            foreach (RagdollPart rp in ragdoll.parts)
-            {
-                PartNode node = part_tree.getNode(rp);
-                if (node == null) continue;
-                if (node.sliced_off)
-                {
-                    rp.bone.animation.SetParent(rp.transform);
-                    rp.bone.animationJoint.gameObject.SetActive(false);
-
-                    if (!node.slice_root)
-                    {
-                        rp.bone.mesh.SetParent(rp.transform);
-                    }
-
-                }
-            }
-
         }
 
         private void Ragdoll_OnSliceEvent(RagdollPart ragdollPart, EventTime eventTime)
@@ -295,11 +271,13 @@ namespace NonSnappingLimbs
                             rp.characterJointLocked = true;
                         }
 
-                        rp.transform.SetParent(null);
                         rp.bone.animationJoint.connectedBody = null;
 
                         if (rp.bone.fixedJoint)
                             Destroy(rp.bone.fixedJoint);
+
+                        rp.bone.SetPinRotationForce(0, 0, 0);
+                        rp.bone.SetPinPositionForce(0, 0, 0);
 
                         rp.collisionHandler.RemovePhysicModifier(ragdoll);
                     }
